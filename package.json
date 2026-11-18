@@ -8,8 +8,10 @@
   "scripts": {
     "typecheck": "pnpm -r exec tsc --noEmit --incremental",
     "lint": "eslint --max-warnings 0 .",
+    "test": "vitest run",
     "depcruise": "depcruise packages --config .dependency-cruiser.cjs",
-    "check:fast": "node scripts/check-fast.mjs"
+    "check:fast": "node scripts/check-fast.mjs",
+    "check:task": "node scripts/check-task.mjs"
   },
   "devDependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "^4.8.1",

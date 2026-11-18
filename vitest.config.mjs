@@ -5,10 +5,10 @@ const API_FLOOR = { lines: 70 };
 
 export default defineConfig({
   test: {
-    projects: ['packages/shared/vitest.config.mjs'],
+    projects: ['packages/shared/vitest.config.mjs', 'scripts/vitest.config.mjs'],
     coverage: {
       provider: 'v8',
-      include: ['packages/*/src/**/*.ts', 'apps/*/src/**/*.ts'],
+      include: ['packages/*/src/**/*.ts', 'apps/*/src/**/*.ts', 'scripts/*.ts'],
       exclude: ['**/*.spec.ts', '**/*.e2e-spec.ts', '**/*.d.ts'],
       reporter: ['text-summary', 'lcov'],
       thresholds: {
