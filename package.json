@@ -8,6 +8,7 @@
   "scripts": {
     "typecheck": "pnpm -r exec tsc --noEmit --incremental",
     "lint": "eslint --max-warnings 0 .",
+    "depcruise": "depcruise packages --config .dependency-cruiser.cjs",
     "check:fast": "node scripts/check-fast.mjs"
   },
   "devDependencies": {
@@ -15,6 +16,7 @@
     "@eslint/js": "^10.0.1",
     "@vitest/coverage-v8": "5.1.0",
     "@vitest/eslint-plugin": "1.6.28",
+    "dependency-cruiser": "^18.8.0",
     "eslint": "^10.15.0",
     "globals": "^17.14.0",
     "typescript": "~6.0.3",
