@@ -1,4 +1,6 @@
 import { spawnSync } from 'node:child_process';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const REPO_ROOT = new URL('..', import.meta.url);
@@ -28,14 +30,25 @@ export function listChangedFiles() {
   };
 }
 
+export function listCandidateFiles() {
+  const tracked = readLines('git', [...GIT_OPTIONS, 'ls-files']);
+  const untracked = readLines('git', [...GIT_OPTIONS, 'ls-files', '--others', '--exclude-standard']);
+  return [...new Set([...tracked, ...untracked])].filter((file) => existsSync(join(REPO_ROOT_PATH, file)));
+}
+
 function elapsedSeconds(startedAt) {
   return (performance.now() - startedAt) / 1000;
 }
 
-export function runStep(label, commandLine) {
+export function runStep(label, commandLine, env = {}) {
   console.log(`\n▶ ${label}`);
   const startedAt = performance.now();
-  const { status } = spawnSync(commandLine, { cwd: REPO_ROOT, stdio: 'inherit', shell: true });
+  const { status } = spawnSync(commandLine, {
+    cwd: REPO_ROOT,
+    stdio: 'inherit',
+    shell: true,
+    env: { ...process.env, ...env },
+  });
   return { label, passed: status === 0, seconds: elapsedSeconds(startedAt) };
 }
 

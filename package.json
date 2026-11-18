@@ -13,7 +13,8 @@
     "test": "vitest run",
     "depcruise": "depcruise apps/api/src packages --config .dependency-cruiser.cjs",
     "check:fast": "node scripts/check-fast.mjs",
-    "check:task": "node scripts/check-task.mjs"
+    "check:task": "node scripts/check-task.mjs",
+    "check:full": "node scripts/check-full.mjs"
   },
   "devDependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "^4.8.1",
