@@ -5,7 +5,7 @@ const API_FLOOR = { lines: 70 };
 
 export default defineConfig({
   test: {
-    projects: ['packages/shared/vitest.config.mjs', 'scripts/vitest.config.mjs'],
+    projects: ['apps/api/vitest.config.mjs', 'packages/shared/vitest.config.mjs', 'scripts/vitest.config.mjs'],
     coverage: {
       provider: 'v8',
       include: ['packages/*/src/**/*.ts', 'apps/*/src/**/*.ts', 'scripts/*.ts'],

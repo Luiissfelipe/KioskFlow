@@ -6,10 +6,12 @@
     "node": ">=24"
   },
   "scripts": {
+    "build": "pnpm --filter \"@kioskflow/api...\" build",
+    "dev:api": "pnpm --filter \"@kioskflow/api^...\" build && pnpm --filter @kioskflow/api start:dev",
     "typecheck": "pnpm -r exec tsc --noEmit --incremental",
     "lint": "eslint --max-warnings 0 .",
     "test": "vitest run",
-    "depcruise": "depcruise packages --config .dependency-cruiser.cjs",
+    "depcruise": "depcruise apps/api/src packages --config .dependency-cruiser.cjs",
     "check:fast": "node scripts/check-fast.mjs",
     "check:task": "node scripts/check-task.mjs"
   },

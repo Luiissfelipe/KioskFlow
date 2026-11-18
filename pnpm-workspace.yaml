@@ -2,3 +2,7 @@ packages:
   - "apps/*"
   - "packages/*"
   - "scripts"
+allowBuilds:
+  '@prisma/engines': true
+  '@swc/core': false
+  prisma: false
