@@ -1,0 +1,11 @@
+title = "KioskFlow gitleaks config"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Local env files that git ignores; gitleaks dir does not read .gitignore, and CI scans history with gitleaks git"
+paths = [
+  '''(^|[\\/])\.env$''',
+  '''(^|[\\/])\.env\.(local|development|test|production)$''',
+]

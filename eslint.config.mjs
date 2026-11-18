@@ -3,7 +3,9 @@ import eslintComments from '@eslint-community/eslint-plugin-eslint-comments';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import vitest from '@vitest/eslint-plugin';
 
+const TEST_FILES = ['**/*.spec.ts', '**/*.test.ts', '**/*.e2e-spec.ts'];
 const MIN_SUPPRESSION_REASON_LENGTH = 10;
 
 export default defineConfig(
@@ -47,5 +49,18 @@ export default defineConfig(
   {
     files: ['**/*.{js,mjs,cjs}'],
     extends: [tseslint.configs.disableTypeChecked],
+  },
+
+  {
+    files: TEST_FILES,
+    plugins: { vitest },
+    languageOptions: { globals: { ...vitest.environments.env.globals } },
+    rules: {
+      ...vitest.configs.recommended.rules,
+      'vitest/no-disabled-tests': 'error',
+      'vitest/no-focused-tests': 'error',
+      'vitest/expect-expect': 'error',
+      'vitest/no-conditional-expect': 'error',
+    },
   },
 );
