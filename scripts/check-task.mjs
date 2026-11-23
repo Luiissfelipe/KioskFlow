@@ -6,12 +6,20 @@ import {
   parseLcov,
   toRepoRelativePath,
 } from './changed-lines-coverage.ts';
-import { finish, listChangedFiles, readWorkingTreeDiff, REPO_ROOT_PATH, runCheck, runStep } from './lib.mjs';
+import {
+  finish,
+  listChangedFiles,
+  readWorkingTreeDiff,
+  REPO_ROOT_PATH,
+  runCheck,
+  runStep,
+  TEST_DATABASE_URL,
+} from './lib.mjs';
 
 const SECONDS_BUDGET = 90;
 const CHANGED_LINES_FLOOR_PERCENTAGE = 80;
 const LCOV_REPORT = join(REPO_ROOT_PATH, 'coverage', 'lcov.info');
-const UNIT_TESTS_COMMAND = 'pnpm exec vitest run --coverage';
+const TESTS_COMMAND = 'pnpm exec vitest run --config vitest.full.config.mjs --coverage';
 
 function readCoverageHits() {
   const hits = parseLcov(readFileSync(LCOV_REPORT, 'utf8'));
@@ -49,7 +57,8 @@ rmSync(LCOV_REPORT, { force: true });
 finish(
   'check:task',
   [
-    runStep('unit tests with coverage floors', UNIT_TESTS_COMMAND),
+    runStep('postgres for integration tests', 'docker compose up -d --wait db'),
+    runStep('tests with coverage floors (unit and integration)', TESTS_COMMAND, { TEST_DATABASE_URL }),
     runCheck('coverage of changed lines', checkChangedLinesCoverage),
     runStep('architecture boundaries', 'pnpm depcruise'),
   ],
