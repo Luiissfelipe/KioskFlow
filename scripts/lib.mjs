@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const REPO_ROOT = new URL('..', import.meta.url);
 export const REPO_ROOT_PATH = fileURLToPath(REPO_ROOT);
+export const TEST_DATABASE_URL = 'postgresql://kioskflow:kioskflow@localhost:5433/kioskflow_test?schema=public';
 const GIT_OPTIONS = ['-c', 'core.quotepath=off'];
 
 function readOutput(command, args) {
