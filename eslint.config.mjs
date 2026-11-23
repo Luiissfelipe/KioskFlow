@@ -43,6 +43,18 @@ export default defineConfig(
       '@eslint-community/eslint-comments/no-aggregating-enable': 'error',
       '@eslint-community/eslint-comments/no-duplicate-disable': 'error',
       '@eslint-community/eslint-comments/no-unused-enable': 'error',
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            {
+              name: '@nestjs/swagger',
+              importNames: ['ApiExcludeEndpoint', 'ApiExcludeController', 'ApiIncludeEndpoint'],
+              message: 'Every route must stay in the OpenAPI document, where its response schema is checked.',
+            },
+          ],
+        },
+      ],
     },
   },
 
