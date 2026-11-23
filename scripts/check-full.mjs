@@ -3,13 +3,12 @@ import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { classifyFindings, parseOsvReport } from './osv-severity.ts';
-import { finish, listCandidateFiles, REPO_ROOT_PATH, runCheck, runStep } from './lib.mjs';
+import { finish, listCandidateFiles, REPO_ROOT_PATH, runCheck, runStep, TEST_DATABASE_URL } from './lib.mjs';
 
 const SECONDS_BUDGET = 600;
 const OSV_IMAGE = 'ghcr.io/google/osv-scanner:v2.7.1';
 const SEMGREP_IMAGE = 'semgrep/semgrep:1.186.0';
 const OSV_EXIT_CODES_WITH_REPORT = new Set([0, 1]);
-const TEST_DATABASE_URL = 'postgresql://kioskflow:kioskflow@localhost:5433/kioskflow?schema=public';
 const REPO_MOUNT = REPO_ROOT_PATH.replace(/[\\/]+$/, '');
 
 function withTempDirectory(prefix, action) {
