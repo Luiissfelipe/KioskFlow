@@ -23,7 +23,7 @@ export default defineProject({
     name: 'api-db',
     globals: true,
     environment: 'node',
-    include: ['test/**/*.e2e-spec.ts'],
+    include: ['test/**/*.e2e-spec.ts', 'src/**/*.int-spec.ts'],
     env: { DATABASE_URL: readTestDatabaseUrl() },
     globalSetup: ['test/global-setup.ts'],
     fileParallelism: false,

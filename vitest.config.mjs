@@ -9,7 +9,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       include: ['packages/*/src/**/*.ts', 'apps/*/src/**/*.ts', 'scripts/*.ts'],
-      exclude: ['**/*.spec.ts', '**/*.e2e-spec.ts', '**/*.d.ts'],
+      exclude: ['**/*.spec.ts', '**/*.e2e-spec.ts', '**/*.int-spec.ts', '**/*.d.ts'],
       reporter: ['text-summary', 'lcov'],
       thresholds: {
         'packages/shared/src/**/*.ts': DOMAIN_FLOOR,
