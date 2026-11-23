@@ -8,5 +8,5 @@
     "incremental": false
   },
   "include": ["src", "generated"],
-  "exclude": ["**/*.spec.ts"]
+  "exclude": ["**/*.spec.ts", "**/*.int-spec.ts"]
 }

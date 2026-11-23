@@ -5,7 +5,7 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import vitest from '@vitest/eslint-plugin';
 
-const TEST_FILES = ['**/*.spec.ts', '**/*.test.ts', '**/*.e2e-spec.ts'];
+const TEST_FILES = ['**/*.spec.ts', '**/*.test.ts', '**/*.e2e-spec.ts', '**/*.int-spec.ts'];
 const MIN_SUPPRESSION_REASON_LENGTH = 10;
 
 export default defineConfig(
