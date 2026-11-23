@@ -10,5 +10,5 @@
     "types": ["node", "vitest/globals"],
     "tsBuildInfoFile": "./node_modules/.cache/tsconfig.tsbuildinfo"
   },
-  "include": ["src", "test", "generated", "prisma.config.ts"]
+  "include": ["src", "test", "generated", "prisma", "prisma.config.ts"]
 }
