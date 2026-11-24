@@ -3,6 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import type { CatalogCategory } from '../catalog-types';
 import { CATEGORY_PARAM, selectCategory } from '../select-category';
+import { CatalogEmpty } from './catalog-empty';
 import { CategoryTabs } from './category-tabs';
 import { ProductCard } from './product-card';
 
@@ -15,7 +16,7 @@ function showCategoryInUrl(slug: string) {
 export function CatalogMenu({ categories }: Readonly<{ categories: readonly CatalogCategory[] }>) {
   const searchParams = useSearchParams();
   const selected = selectCategory(categories, searchParams.get(CATEGORY_PARAM));
-  if (!selected) return null;
+  if (!selected) return <CatalogEmpty />;
 
   return (
     <>

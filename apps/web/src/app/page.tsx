@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import { fetchCatalog } from '@/features/catalog/api/fetch-catalog';
 import { CatalogHeader } from '@/features/catalog/components/catalog-header';
 import { CatalogMenu } from '@/features/catalog/components/catalog-menu';
+import { CatalogSkeleton } from '@/features/catalog/components/catalog-skeleton';
 import { parseServerEnv } from '@/lib/server-env';
 
 async function CatalogContent() {
@@ -17,7 +18,7 @@ export default function HomePage() {
     <>
       <CatalogHeader />
       <main>
-        <Suspense fallback={<p className="px-4">Carregando o cardápio…</p>}>
+        <Suspense fallback={<CatalogSkeleton />}>
           <CatalogContent />
         </Suspense>
       </main>
