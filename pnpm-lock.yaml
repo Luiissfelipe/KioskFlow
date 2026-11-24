@@ -149,7 +149,11 @@ importers:
         specifier: ^4.3.5
         version: 4.3.5
 
-  packages/shared: {}
+  packages/shared:
+    devDependencies:
+      zod:
+        specifier: ^4.6.7
+        version: 4.6.7
 
   scripts:
     devDependencies:

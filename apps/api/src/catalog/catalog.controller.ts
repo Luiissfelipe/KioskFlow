@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { catalogResponseSchema } from '@kioskflow/shared';
 import { ResponseSchema } from '../http/response-schema.decorator.js';
-import { catalogResponseSchema } from './catalog.schema.js';
 import { CatalogService } from './catalog.service.js';
 
 @ApiTags('Cardápio')
