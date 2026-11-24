@@ -1,6 +1,6 @@
 import { connection } from 'next/server';
 import { Suspense } from 'react';
-import { fetchCatalog } from '../lib/catalog';
+import { fetchCatalog } from '../features/catalog/api/fetch-catalog';
 import { parseServerEnv } from '../lib/server-env';
 
 async function CatalogList() {
