@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CatalogUnavailableError, fetchCatalog } from './catalog';
+import { CatalogUnavailableError, fetchCatalog } from './fetch-catalog';
 
 const API_URL = 'http://localhost:3001';
 
