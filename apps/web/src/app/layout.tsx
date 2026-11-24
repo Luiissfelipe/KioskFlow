@@ -22,7 +22,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="pt-BR" className={`${bricolageGrotesque.variable} ${youngSerif.variable}`}>
-      <body>{children}</body>
+      <body>
+        <div className="mx-auto max-w-md">{children}</div>
+      </body>
     </html>
   );
 }
