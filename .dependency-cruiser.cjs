@@ -1,6 +1,7 @@
 const FRAMEWORK_PACKAGES = '(^|node_modules/)(@nestjs/|@prisma/client|stripe($|/)|socket\\.io|@socket\\.io/)';
 const GENERATED_PRISMA_CLIENT = '^apps/api/generated/';
 const API_SOURCE = '^apps/api/src/';
+const WEB_SOURCE = '^apps/web/src/';
 const ALLOWED_MODULE_DEPENDENCIES = {
   admin: ['catalog'],
   catalog: [],
@@ -45,10 +46,29 @@ module.exports = {
       from: { path: `${API_SOURCE}[^/]+/`, pathNot: anyFolderOf([...PRODUCT_MODULES, ...INFRASTRUCTURE_FOLDERS]) },
       to: {},
     },
+    {
+      name: 'web-features-must-not-import-each-other',
+      severity: 'error',
+      from: { path: `${WEB_SOURCE}features/([^/]+)/` },
+      to: { path: `${WEB_SOURCE}features/`, pathNot: `${WEB_SOURCE}features/$1/` },
+    },
+    {
+      name: 'web-shared-code-must-not-import-features-or-app',
+      severity: 'error',
+      from: { path: `${WEB_SOURCE}(lib|components)/` },
+      to: { path: `${WEB_SOURCE}(features|app)/` },
+    },
+    {
+      name: 'web-features-must-not-import-app',
+      severity: 'error',
+      from: { path: `${WEB_SOURCE}features/` },
+      to: { path: `${WEB_SOURCE}app/` },
+    },
   ],
   options: {
     doNotFollow: { path: ['node_modules', GENERATED_PRISMA_CLIENT] },
     exclude: { path: '(^|/)(dist|coverage|\\.next|build)/' },
     tsPreCompilationDeps: true,
+    tsConfig: { fileName: 'apps/web/tsconfig.json' },
   },
 };

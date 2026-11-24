@@ -11,7 +11,7 @@
     "typecheck": "pnpm -r exec tsc --noEmit --incremental",
     "lint": "eslint --max-warnings 0 .",
     "test": "vitest run",
-    "depcruise": "depcruise apps/api/src packages --config .dependency-cruiser.cjs",
+    "depcruise": "depcruise apps/api/src apps/web/src packages --config .dependency-cruiser.cjs",
     "check:fast": "node scripts/check-fast.mjs",
     "check:task": "node scripts/check-task.mjs",
     "check:full": "node scripts/check-full.mjs"
