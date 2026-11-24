@@ -1,15 +1,25 @@
 import eslint from '@eslint/js';
 import eslintComments from '@eslint-community/eslint-plugin-eslint-comments';
+import nextVitals from 'eslint-config-next/core-web-vitals';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import vitest from '@vitest/eslint-plugin';
 
 const TEST_FILES = ['**/*.spec.ts', '**/*.test.ts', '**/*.e2e-spec.ts', '**/*.int-spec.ts'];
+const WEB_FILES = ['apps/web/**/*.{ts,tsx}'];
 const MIN_SUPPRESSION_REASON_LENGTH = 10;
 
 export default defineConfig(
-  globalIgnores(['**/node_modules/', '**/dist/', '**/build/', '**/.next/', '**/coverage/', '**/generated/']),
+  globalIgnores([
+    '**/node_modules/',
+    '**/dist/',
+    '**/build/',
+    '**/.next/',
+    '**/coverage/',
+    '**/generated/',
+    '**/next-env.d.ts',
+  ]),
 
   eslint.configs.recommended,
   tseslint.configs.recommendedTypeChecked,
@@ -56,6 +66,13 @@ export default defineConfig(
         },
       ],
     },
+  },
+
+  {
+    files: WEB_FILES,
+    extends: [nextVitals],
+    languageOptions: { globals: { ...globals.browser } },
+    settings: { next: { rootDir: 'apps/web/' } },
   },
 
   {

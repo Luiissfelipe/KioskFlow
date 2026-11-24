@@ -10,6 +10,7 @@ const OSV_IMAGE = 'ghcr.io/google/osv-scanner:v2.7.1';
 const SEMGREP_IMAGE = 'semgrep/semgrep:1.186.0';
 const OSV_EXIT_CODES_WITH_REPORT = new Set([0, 1]);
 const REPO_MOUNT = REPO_ROOT_PATH.replace(/[\\/]+$/, '');
+const NEXT_TELEMETRY_OFF = { NEXT_TELEMETRY_DISABLED: '1' };
 
 function withTempDirectory(prefix, action) {
   const directory = mkdtempSync(join(tmpdir(), prefix));
@@ -84,7 +85,7 @@ finish(
     runStep('postgres for integration tests', 'docker compose up -d --wait db'),
     runStep('tsc --noEmit', 'pnpm typecheck'),
     runStep('eslint (whole repo)', 'pnpm lint'),
-    runStep('production build', 'pnpm build'),
+    runStep('production build', 'pnpm build', NEXT_TELEMETRY_OFF),
     runStep('tests with coverage floors (unit and integration)', 'pnpm exec vitest run --config vitest.full.config.mjs --coverage', {
       TEST_DATABASE_URL,
     }),
