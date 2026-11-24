@@ -36,15 +36,25 @@
   --text-*: initial;
 
   --text-meta: 0.875rem;
+  --text-meta--line-height: 1.4;
   --text-body: 1rem;
+  --text-body--line-height: 1.45;
   --text-title: 1.25rem;
+  --text-title--line-height: 1.2;
   --text-heading: 1.75rem;
+  --text-heading--line-height: 1.1;
   --text-kds-ticket: 2.5rem;
+  --text-kds-ticket--line-height: 1;
   --text-board-label: 2.5rem;
+  --text-board-label--line-height: 1.2;
   --text-board-brand: 4rem;
+  --text-board-brand--line-height: 1;
   --text-board-title: 6rem;
+  --text-board-title--line-height: 1.1;
   --text-ticket: 6rem;
+  --text-ticket--line-height: 1;
   --text-board-ticket: 10rem;
+  --text-board-ticket--line-height: 1;
 }
 
 @theme inline {
@@ -85,7 +95,8 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans text-body touch-manipulation;
+    -webkit-tap-highlight-color: color-mix(in oklch, var(--foreground) 12%, transparent);
   }
 
   :focus-visible {
