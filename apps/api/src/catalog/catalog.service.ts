@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import type { CatalogResponse } from '@kioskflow/shared';
 import { PrismaService } from '../prisma/prisma.service.js';
-import type { CatalogResponse } from './catalog.schema.js';
 
 const AVAILABLE = { isAvailable: true } as const;
 const DISPLAY_ORDER = [{ sortOrder: 'asc' }, { id: 'asc' }] as const;
