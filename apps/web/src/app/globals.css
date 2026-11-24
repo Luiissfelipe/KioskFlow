@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+:root {
+  --background: oklch(0.976 0 0);
+  --foreground: oklch(0.258 0.044 159.9);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.258 0.044 159.9);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.258 0.044 159.9);
+  --primary: oklch(0.897 0.185 102.1);
+  --primary-foreground: oklch(0.258 0.044 159.9);
+  --secondary: oklch(0.941 0.005 117.9);
+  --secondary-foreground: oklch(0.258 0.044 159.9);
+  --muted: oklch(0.941 0.005 117.9);
+  --muted-foreground: oklch(0.451 0.025 160.6);
+  --accent: oklch(0.941 0.005 117.9);
+  --accent-foreground: oklch(0.258 0.044 159.9);
+  --destructive: oklch(0.5 0.182 29.5);
+  --destructive-foreground: oklch(1 0 0);
+  --destructive-surface: oklch(0.956 0.019 25.6);
+  --highlight: oklch(0.953 0.097 103);
+  --highlight-foreground: oklch(0.258 0.044 159.9);
+  --border: oklch(0.451 0.025 160.6);
+  --input: oklch(0.451 0.025 160.6);
+  --ring: oklch(0.258 0.044 159.9);
+  --radius: 0rem;
+
+  --target-client: 2.75rem;
+  --target-action: 3.25rem;
+  --focus-width: 3px;
+  --focus-offset: 2px;
+}
+
+@theme {
+  --color-*: initial;
+  --text-*: initial;
+
+  --text-meta: 0.875rem;
+  --text-body: 1rem;
+  --text-title: 1.25rem;
+  --text-heading: 1.75rem;
+  --text-kds-ticket: 2.5rem;
+  --text-board-label: 2.5rem;
+  --text-board-brand: 4rem;
+  --text-board-title: 6rem;
+  --text-ticket: 6rem;
+  --text-board-ticket: 10rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-surface: var(--destructive-surface);
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --font-sans: var(--font-bricolage);
+  --font-brand: var(--font-young-serif);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  :focus-visible {
+    outline: var(--focus-width) solid var(--ring);
+    outline-offset: var(--focus-offset);
+  }
+}
