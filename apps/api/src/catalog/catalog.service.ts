@@ -19,7 +19,7 @@ export class CatalogService {
         products: {
           where: AVAILABLE,
           orderBy: [...DISPLAY_ORDER],
-          select: { id: true, name: true, description: true, priceCents: true },
+          select: { id: true, name: true, description: true, priceCents: true, imagePath: true },
         },
         extras: {
           where: AVAILABLE,

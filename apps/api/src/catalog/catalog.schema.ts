@@ -5,6 +5,7 @@ const catalogProductSchema = z.object({
   name: z.string(),
   description: z.string(),
   priceCents: z.int(),
+  imagePath: z.string().nullable(),
 });
 
 const catalogExtraSchema = z.object({

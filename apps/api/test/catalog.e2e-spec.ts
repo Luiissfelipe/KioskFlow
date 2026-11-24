@@ -34,7 +34,7 @@ describe('GET /catalog with a real postgres', () => {
       data: { categoryId: burgers.id, name: 'Cheeseburger', description: 'Pão, carne e cheddar', priceCents: 3290, sortOrder: 2 },
     });
     const classic = await prisma.product.create({
-      data: { categoryId: burgers.id, name: 'Clássico', description: 'Pão, carne e salada', priceCents: 2890, sortOrder: 1 },
+      data: { categoryId: burgers.id, name: 'Clássico', description: 'Pão, carne e salada', priceCents: 2890, sortOrder: 1, imagePath: 'classico.webp' },
     });
     const cheddar = await prisma.extra.create({ data: { categoryId: burgers.id, name: 'Cheddar', priceCents: 400 } });
     const bacon = await prisma.extra.create({ data: { categoryId: burgers.id, name: 'Bacon extra', priceCents: 600 } });
@@ -48,8 +48,8 @@ describe('GET /catalog with a real postgres', () => {
           id: burgers.id,
           name: 'Hambúrgueres Artesanais',
           products: [
-            { id: classic.id, name: 'Clássico', description: 'Pão, carne e salada', priceCents: 2890 },
-            { id: cheeseburger.id, name: 'Cheeseburger', description: 'Pão, carne e cheddar', priceCents: 3290 },
+            { id: classic.id, name: 'Clássico', description: 'Pão, carne e salada', priceCents: 2890, imagePath: 'classico.webp' },
+            { id: cheeseburger.id, name: 'Cheeseburger', description: 'Pão, carne e cheddar', priceCents: 3290, imagePath: null },
           ],
           extras: [
             { id: bacon.id, name: 'Bacon extra', priceCents: 600 },
@@ -59,7 +59,7 @@ describe('GET /catalog with a real postgres', () => {
         {
           id: drinks.id,
           name: 'Bebidas',
-          products: [{ id: juice.id, name: 'Suco de laranja', description: 'Natural, 400 ml', priceCents: 1100 }],
+          products: [{ id: juice.id, name: 'Suco de laranja', description: 'Natural, 400 ml', priceCents: 1100, imagePath: null }],
           extras: [],
         },
       ],
@@ -69,7 +69,7 @@ describe('GET /catalog with a real postgres', () => {
   it('hides sold-out products and extras', async () => {
     const burgers = await prisma.category.create({ data: { name: 'Hambúrgueres Artesanais', sortOrder: 1 } });
     const classic = await prisma.product.create({
-      data: { categoryId: burgers.id, name: 'Clássico', description: 'Pão, carne e salada', priceCents: 2890, sortOrder: 1 },
+      data: { categoryId: burgers.id, name: 'Clássico', description: 'Pão, carne e salada', priceCents: 2890, sortOrder: 1, imagePath: 'classico.webp' },
     });
     await prisma.product.create({
       data: { categoryId: burgers.id, name: 'Duplo', description: 'Duas carnes', priceCents: 3890, sortOrder: 2, isAvailable: false },
@@ -84,7 +84,7 @@ describe('GET /catalog with a real postgres', () => {
         {
           id: burgers.id,
           name: 'Hambúrgueres Artesanais',
-          products: [{ id: classic.id, name: 'Clássico', description: 'Pão, carne e salada', priceCents: 2890 }],
+          products: [{ id: classic.id, name: 'Clássico', description: 'Pão, carne e salada', priceCents: 2890, imagePath: 'classico.webp' }],
           extras: [{ id: cheddar.id, name: 'Cheddar', priceCents: 400 }],
         },
       ],
@@ -109,7 +109,7 @@ describe('GET /catalog with a real postgres', () => {
         {
           id: drinks.id,
           name: 'Bebidas',
-          products: [{ id: juice.id, name: 'Suco de laranja', description: 'Natural, 400 ml', priceCents: 1100 }],
+          products: [{ id: juice.id, name: 'Suco de laranja', description: 'Natural, 400 ml', priceCents: 1100, imagePath: null }],
           extras: [],
         },
       ],

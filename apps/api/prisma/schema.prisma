@@ -26,6 +26,7 @@ model Product {
   priceCents  Int
   isAvailable Boolean  @default(true)
   sortOrder   Int
+  imagePath   String?
 
   @@unique([categoryId, name])
 }
